@@ -12,19 +12,18 @@ public:
 	FriendBook();
 	~FriendBook();
 
-	//Två överlagringar av metoden AddFriend
 	bool AddFriend(const std::string& name, int year, int month, int day);
 	bool RemoveFriend(const std::string& name);
 	
-	//Returnerar en strängrepresentation av samtliga friends
+	//Returnerar en strÃ¤ngrepresentation av samtliga friends
 	std::string ToString() const;
 	//Returnerar antalet inlagda friends
 	int GetSize() const;
 
-	//Läser in friend-objekt från fil och sparar i arrayen friends
+	//LÃ¤ser in friend-objekt frÃ¥n fil och sparar i arrayen friends
 	void ReadFromFile(const std::string& filename);
 
-	//Sparar alla friend-objekt på fil
+	//Sparar alla friend-objekt pÃ¥ fil
 	void SaveToFile(const std::string& filename) const; //Obs. const
 
 	//"Tar bort" alla friends i FriendBook
