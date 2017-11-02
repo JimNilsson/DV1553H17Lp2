@@ -6,8 +6,6 @@
 class FriendBook
 {
 public:
-	static const int CAP = 10;
-
 	FriendBook();
 	~FriendBook();
 
@@ -29,9 +27,11 @@ public:
 	void Clear();
 
 private:
-	Friend friends[CAP];
 	int count;
+	int capacity;
+	Friend** friends;
 	int FindFriend(const Friend& f) const;
+	void Expand();
 };
 
 #endif
