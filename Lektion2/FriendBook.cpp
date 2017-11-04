@@ -1,4 +1,5 @@
 #include "FriendBook.h"
+#include <fstream>
 
 FriendBook::FriendBook()
 {
@@ -68,4 +69,71 @@ int FriendBook::FindFriend(const Friend& f) const
 		}
 	}
 	return index;
+}
+
+std::string FriendBook::ToString() const
+{
+	std::string retString = "";
+	for (int i = 0; i < count; i++)
+	{
+		retString += friends[i]->ToString();
+	}
+	return retString;
+}
+
+int FriendBook::GetSize() const
+{
+	return count;
+}
+
+
+void FriendBook::ReadFromFile(const std::string& filename)
+{
+	std::ifstream fileIn(filename);
+	if (fileIn.is_open())
+	{
+		int friendsInFile;
+		std::string tempName;
+		int tempYear;
+		int tempMonth;
+		int tempDay;
+
+		fileIn >> friendsInFile;
+		fileIn.ignore();
+		for (int i = 0; i < friendsInFile; i++)
+		{
+			std::getline(fileIn, tempName);
+			fileIn >> tempYear; fileIn.ignore();
+			fileIn >> tempMonth; fileIn.ignore();
+			fileIn >> tempDay; fileIn.ignore();
+			AddFriend(tempName, tempYear, tempMonth, tempDay);
+		}
+	}
+}
+
+
+void FriendBook::SaveToFile(const std::string& filename) const
+{
+	std::ofstream fileOut(filename);
+	if (fileOut.is_open())
+	{
+		fileOut << count << std::endl;
+		for (int i = 0; i < count; i++)
+		{
+			fileOut << friends[i]->GetName() << std::endl;
+			fileOut << friends[i]->GetBirthDateYear() << std::endl;
+			fileOut << friends[i]->GetBirthDateMonth() << std::endl;
+			fileOut << friends[i]->GetBirthDateDay() << std::endl;
+		}
+	}
+}
+
+
+void FriendBook::Clear()
+{
+	for (int i = 0; i < count; ++i)
+	{
+		delete friends[i];
+	}
+	count = 0;
 }
