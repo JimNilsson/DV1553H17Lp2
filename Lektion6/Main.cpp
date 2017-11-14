@@ -22,7 +22,7 @@ int main()
 	cityPtr->SetPopulation(20000);
 	//lp->SetPopulation(3000); //Går inte, behållaren är av fel typ.
 	
-
+	  
 	delete lp;
 	delete cityPtr;
 	std::cin.get();
