@@ -13,6 +13,7 @@ private:
 public:
 	Triangle(const std::string& color, float base, float height);
 	Triangle();
+	~Triangle();
 	float GetArea() const;
 	void Draw() const;
 

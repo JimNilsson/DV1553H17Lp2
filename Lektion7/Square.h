@@ -10,6 +10,8 @@ private:
 public:
 	Square(const std::string& color, float side);
 	Square();
+	~Square();
+	
 	float GetArea() const;
 	void Draw() const;
 

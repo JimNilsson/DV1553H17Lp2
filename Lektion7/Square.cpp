@@ -11,6 +11,10 @@ Square::Square() : Shape()
 	this->sideLength = 1.0f;
 }
 
+Square::~Square()
+{
+}
+
 float Square::GetArea() const
 {
 	return sideLength * sideLength;

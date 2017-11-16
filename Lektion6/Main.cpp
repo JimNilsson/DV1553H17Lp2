@@ -5,6 +5,13 @@
 
 int main()
 {
+	srand(100);
+
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << rand() % 12 + 1 << ", ";
+	}
+	std::cin.get();
 	Location l(56.18, 15.82, "Karlskrona");
 
 

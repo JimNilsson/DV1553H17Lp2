@@ -14,6 +14,11 @@ Triangle::Triangle() : Shape()
 	this->height = 1;
 }
 
+Triangle::~Triangle()
+{
+	//empty
+}
+
 float Triangle::GetArea() const
 {
 	return base * height * 0.5f;
