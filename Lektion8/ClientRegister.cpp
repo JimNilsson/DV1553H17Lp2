@@ -14,18 +14,12 @@ ClientRegister::~ClientRegister()
 
 ClientRegister::ClientRegister(const ClientRegister & other)
 {
-	MakeCopy(other);
+	
 }
 
 ClientRegister & ClientRegister::operator=(const ClientRegister & other)
 {
-	//Självtilldelningskontroll
-	if (this != &other)
-	{
-		ClearMemory();
-		MakeCopy(other);
-	}
-	return *this;
+	
 }
 
 bool ClientRegister::AddClient(const std::string & organisationNumber, int maximumCredit, const std::string & name, const std::string & address, const std::string & email, const std::string & phoneNumber)
