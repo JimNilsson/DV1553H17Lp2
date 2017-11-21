@@ -14,12 +14,17 @@ ClientRegister::~ClientRegister()
 
 ClientRegister::ClientRegister(const ClientRegister & other)
 {
-	
+	MakeCopy(other);
 }
 
 ClientRegister & ClientRegister::operator=(const ClientRegister & other)
 {
-	
+	if (this != &other)
+	{
+		ClearMemory();
+		MakeCopy(other);
+	}
+	return *this;
 }
 
 bool ClientRegister::AddClient(const std::string & organisationNumber, int maximumCredit, const std::string & name, const std::string & address, const std::string & email, const std::string & phoneNumber)
@@ -131,7 +136,22 @@ void ClientRegister::Expand()
 
 void ClientRegister::MakeCopy(const ClientRegister & other)
 {
-	//Att göra...
+	this->nrOfClients = other.nrOfClients;
+	this->capacity = other.capacity;
+	this->clients = new Client*[this->capacity];
+	for (int i = 0; i < this->nrOfClients; i++)
+	{
+		BusinessClient* temp = dynamic_cast<BusinessClient*>(other.clients[i]);
+		if (temp != nullptr) //other.clients[i] pekar på en businessClient
+		{
+			//this->clients[i] = new BusinessClient(*temp);
+			this->clients[i] = new BusinessClient(*(BusinessClient*)other.clients[i]);
+		}
+		else
+		{
+			this->clients[i] = new PrivateClient(*(PrivateClient*)other.clients[i]);
+		}
+	}
 }
 
 void ClientRegister::ClearMemory()

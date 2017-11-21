@@ -1,6 +1,7 @@
 #include "PrivateClient.h"
 
-PrivateClient::PrivateClient(const std::string & socialSecurityNumber, const std::string & name, const std::string & address, const std::string & email, const std::string & phoneNumber) : Client(socialSecurityNumber, name, address, email, phoneNumber)
+PrivateClient::PrivateClient(const std::string & socialSecurityNumber, const std::string & name, const std::string & address, const std::string & email, const std::string & phoneNumber)
+	: Client(socialSecurityNumber, name, address, email, phoneNumber)
 {
 	this->bonusPoints = 0;
 }
@@ -30,7 +31,7 @@ bool PrivateClient::MakePurchase(int amount)
 		canBuy = true;
 		ChangeBalance(-amount);
 		//Privatkunder får bonuspoäng för varje 500 kr de handlar för.
-		bonusPoints += amount / 500;
+		this->bonusPoints += amount / 500;
 	}
 	return canBuy;
 }

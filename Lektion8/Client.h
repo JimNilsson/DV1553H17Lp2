@@ -37,7 +37,7 @@ public:
 	std::string GetName() const;
 
 	//För att slippa dynamic_cast/typeid i cctor/op= för containerklass.
-	//virtual Client* Clone() const = 0;
+	///virtual Client* Clone() const = 0;
 	
 
 };

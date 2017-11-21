@@ -14,8 +14,8 @@ public:
 	~BusinessClient();
 
 	//Att implementera
-	//BusinessClient(const BusinessClient& other);
-	//BusinessClient& operator=(const BusinessClient& other);
+	BusinessClient(const BusinessClient& other);
+	BusinessClient& operator=(const BusinessClient& other);
 	bool MakePurchase(int amount);
 
 };

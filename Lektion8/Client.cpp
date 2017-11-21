@@ -27,7 +27,7 @@ Client::Client(const Client & other)
 	this->balance = other.balance;
 }
 
-Client & Client::operator=(const Client & other)
+Client& Client::operator=(const Client & other)
 {
 	this->identificationNumber = other.identificationNumber;
 	this->name = other.name;
