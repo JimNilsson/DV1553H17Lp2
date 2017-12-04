@@ -57,6 +57,8 @@ public:
 	int GetNrOfPrivateClients() const;
 	int GetNrOfBusinessClients() const;
 
+	bool RedeemBonusPoints(const std::string& idNumber);
+
 private:
 	//Privata hjälpfunktioner
 	/*Letar igenom arrayen clients.

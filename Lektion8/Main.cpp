@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-	Client* business = new BusinessClient("552343-4423", 1000, "Karlskrona Blommor", "Grengatan 6 371 44 Karlskrona", "kontakt@karlksronablommor.se", "076-12345678");
+	/*Client* business = new BusinessClient("552343-4423", 1000, "Karlskrona Blommor", "Grengatan 6 371 44 Karlskrona", "kontakt@karlksronablommor.se", "076-12345678");
 	Client* priv = new PrivateClient("19900114-1234", "Karl Olsson", "Gunggatan 5, 32245 Oslo NORGE", "karlolsson@norge.no", "070-123123123");
 
 	std::cout << "Trying to make a purchase of 1200 kr...\n";
@@ -40,7 +40,39 @@ int main(int argc, char** argv)
 	std::cin.get();
 
 	delete business;
-	delete priv;
+	delete priv;*/
+
+	ClientRegister cr;
+
+	cr.AddClient("8824242-1232", 5000, "COmpany", "asddas 123", "abvc@company.com", "0765123123123");
+	cr.AddClient("8824242-2345", 6000, "COmpany2", "asddas 123", "abvc@company.com", "0765123123123");
+	cr.AddClient("8824242-3456", 7000, "COmpany3", "asddas 123", "abvc@company.com", "0765123123123");
+
+	int size = cr.GetNrOfClients();
+	std::string* strings = new std::string[size];
+	if (cr.AllClientsAsStrings(strings, size -1))
+	{
+		for (int i = 0; i < size; i++)
+			std::cout << strings[i] << "\n";
+	}
+	else
+	{
+		std::cout << "Arrayen var inte stor nog.\n";
+	}
+	delete[] strings;
+
+
+
+
+
+	int a = 5;
+	std::cout << a++ << "\n";
+	std::cout << a << "\n";
+	int b = 5;
+	std::cout <<
+		++b << "\n";
+	std::cout << b << "\n";
+
 
 	std::cin.get();
 	return 0;

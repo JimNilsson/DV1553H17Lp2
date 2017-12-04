@@ -74,8 +74,18 @@ bool ClientRegister::AllClientsAsStrings(std::string * stringArr, int capOfStrin
 
 bool ClientRegister::AllPrivateClientsAsStrings(std::string * stringArr, int capOfStringArr) const
 {
-	//Att göra.
-	return false;
+	int index = 0;
+	bool retVal = false;
+	if (capOfStringArr >= GetNrOfPrivateClients())
+	{
+		retVal = true;
+		for (int i = 0; i < nrOfClients; i++)
+		{
+			if (dynamic_cast<PrivateClient*>(clients[i]) != nullptr)
+				stringArr[index++] = clients[i]->ToString();
+		}
+	}
+	return retVal;
 }
 
 bool ClientRegister::AllBusinessClientsAsStrings(std::string * stringArr, int capOfStringArr) const
@@ -91,14 +101,48 @@ int ClientRegister::GetNrOfClients() const
 
 int ClientRegister::GetNrOfPrivateClients() const
 {
-	//Att göra...
-	return 0;
+	int counter = 0;
+	for (int i = 0; i < nrOfClients; i++)
+	{
+		if (dynamic_cast<PrivateClient*>(clients[i]) != nullptr)
+			++counter;
+	}
+	return counter;
 }
 
 int ClientRegister::GetNrOfBusinessClients() const
 {
-	//Att göra.
+	int counter = 0;
+	for (int i = 0; i < nrOfClients; i++)
+	{
+		if (typeid(BusinessClient) == typeid(*clients[i]))
+			++counter;
+	}
 	return 0;
+}
+
+bool ClientRegister::RedeemBonusPoints(const std::string & idNumber)
+{
+	int index = -1;
+	bool retVal = false;
+	for (int i = 0; i < nrOfClients; i++)
+	{
+		if (*clients[i] == idNumber)
+		{
+			index = i;
+			i = nrOfClients;
+		}
+	}
+	if (index != -1)
+	{
+		PrivateClient* temp = dynamic_cast<PrivateClient*>(clients[index]);
+		if (temp != nullptr)
+		{
+			temp->RedeemBonusPoints();
+			retVal = true;
+		}
+	}
+	return retVal;
 }
 
 int ClientRegister::Find(const Client & client) const
